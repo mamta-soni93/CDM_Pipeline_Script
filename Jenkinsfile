@@ -1,9 +1,3 @@
-#!/bin/bash
-# Instance for ADE deploy location 
-def ADE_DEPLOY_LOCATION = "/data01/workspace/d1_deployment"
-# Multiple instances of SDM can run within the same AWS account
-def SDM_INSTALLATION_JAR_PATH="/data01/workspace/sdm_deployment/"
-
 pipeline {
     agent any
 	parameters {
