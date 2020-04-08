@@ -1,24 +1,32 @@
+#!/bin/sh
+//app parmas
+def fileDirectory="F:/InfoObjects/Jenkins/Download/test"
+def fileName="test"
+def tarExt=".tar.gz"
 pipeline {
     agent any
 	parameters {
 		string(name: 'ADE_Version', defaultValue: '0.0.1', description: 'Project version, Needs to execute')
 	}
     stages{
-       stage('Push jar On Artifactory'){
-            steps {
+	   stage('Unzip jar file') {
+			steps {
                script {
-                 uploadArtifact()
+                 decompressFile(fileDirectory, fileName)
                }
             }
-       }
+	   }
     }
 }
 
-def uploadArtifact() {
-bat '''
-        curl -sSf -H "X-JFrog-Art-Api:AKCp5ekmsgbnFTK8mAWyiHq3W9q6KuDKGwBAjvNzvT5A2Vst1j4xHSZq3oPwC8V5jmLEqz3dQ" \
-       -X PUT \
-	   -o F:/InfoObjects/Jenkins/Download/jb-hello-world-maven-0.1.0.jar https://hexxa.jfrog.io/artifactory/Jenkins-integration/jb-hello-world-maven-0.1.0.jar
-    '''
-  echo "done"
+def decompressFile(String path, String fileName) {
+  dir (path) {
+    echo "file decompression ${fileName}"
+    bat 'dir'
+	echo "here..."
+    bat "tar -xf ${fileName}${tarExt}"
+	echo "here...1"
+	echo "heere2"
+  }
 }
+
