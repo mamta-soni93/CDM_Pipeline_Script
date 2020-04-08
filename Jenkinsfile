@@ -12,14 +12,14 @@ pipeline {
 	   stage('Unzip jar file') {
 			steps {
                script {
-                 decompressFile(fileDirectory, fileName)
+                 decompressFile(fileDirectory, fileName, tarExt)
                }
             }
 	   }
     }
 }
 
-def decompressFile(String path, String fileName) {
+def decompressFile(String path, String fileName, String tarExt) {
   dir (path) {
     echo "file decompression ${fileName}"
     bat 'dir'
