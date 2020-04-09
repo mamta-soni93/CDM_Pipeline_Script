@@ -4,6 +4,7 @@
 def appDownloadJarLocation="F:/InfoObjects/Jenkins/Download/jar"
 def fileName="hello-world"
 def tarExtension=".tar.gz"
+def jarExtension=".jar"
 def admApp = "ADM"
 def sdmApp = "SDM"
 def global = "Global"
@@ -57,14 +58,9 @@ pipeline {
 	    }
 		stage('Remove a jar file') {
 			steps {
-			   echo "Removing a jar file..!!"
                script {
-                 dir(appDownloadJarLocation) {
-						bat 'dir' //ls -la
-						bat "del -f ${fileName}${tarExtension}" 
-					}
+                 removingFile(appDownloadJarLocation, fileName, jarExtension)
                }
-			 echo "Jar file is removed successfully..!!"
             }			
 	    }
     }
