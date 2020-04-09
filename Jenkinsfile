@@ -1,4 +1,5 @@
 #!/bin/bash
+@Library('Application_SharedLibrary')_
 // Jar file download location
 def appDownloadJarLocation="F:/InfoObjects/Jenkins/Download/jar"
 def fileName="hello-world"
@@ -33,7 +34,7 @@ pipeline {
 			steps {
 			   echo "UnZip a jar file and delete old one"
                script {
-                 unZipJarFile(appDownloadJarLocation, fileName, tarExtension)
+                 unZipTarFile(appDownloadJarLocation, fileName, tarExtension)
                }
             }			
 		}
@@ -73,17 +74,4 @@ def zipJarFile() {
 	   -o F:/InfoObjects/Jenkins/Download/test.tar.gz https://hexxa.jfrog.io/artifactory/Jenkins-integration/jb-hello-world-maven-0.1.0.jar
     '''
 	echo "Jar file zip is completed"
-}
-
-//Unzip a jar file
-def unZipJarFile(String path, String fileName, String tarExt) {
-  dir (path) {
-    echo "file decompression ${fileName}"
-    bat 'dir'
-	echo "here..."
-    bat "tar -xf ${fileName}${tarExt}"
-	echo "delete old compressed files ${fileName}"
-    bat "del -f ${fileName}${tarExt}"  // sh "rm -f '${fileName}'"
-    bat 'dir'
-  }
 }
