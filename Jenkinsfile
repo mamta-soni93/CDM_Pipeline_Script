@@ -24,7 +24,7 @@ pipeline {
 	    }
 	    stage('Zip jar file') {
 			steps {
-			   echo "Zip a jar file in extensio : ${tarExtension}"
+			   echo "Zip a jar file in extension : ${tarExtension}"
                script {
                  zipJarFile()
                }
@@ -38,7 +38,7 @@ pipeline {
                }
             }			
 		}
-	   stage('Deploy a jar file') {
+	    stage('Deploy a jar file') {
 			steps {
 			   echo "Deployment...!!"
                script {
@@ -54,6 +54,18 @@ pipeline {
                }
 			 echo "Deployment Done...!!"
             }			
-	   }
+	    }
+		stage('Remove a jar file') {
+			steps {
+			   echo "Removing a jar file..!!"
+               script {
+                 dir(appDownloadJarLocation) {
+						bat 'dir' //ls -la
+						bat "del -f ${fileName}${tarExtension}" 
+					}
+               }
+			 echo "Jar file is removed successfully..!!"
+            }			
+	    }
     }
 }
