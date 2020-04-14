@@ -25,6 +25,8 @@ pipeline {
                script {
 			   echo "${params.Artifactory_Credential_ID}"
                  downloadArtifact("${params.Artifactory_Credential_ID}")
+		       echo "hellollllllllllll"
+		       methodA()
                }
             }			
 	    }
