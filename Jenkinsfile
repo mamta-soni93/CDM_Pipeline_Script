@@ -24,7 +24,7 @@ pipeline {
 			   echo "Download the application ${params.Package_Type}${params.ADE_Version} from artifactory"
                script {
 			   echo "${params.Artifactory_Credential_ID}"
-                 downloadArtifact("${params.Artifactory_Credenteial_ID}")
+                // downloadArtifact("${params.Artifactory_Credenteial_ID}")
 		       example1()
                }
             }			
