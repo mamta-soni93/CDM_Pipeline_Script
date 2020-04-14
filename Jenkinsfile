@@ -8,6 +8,7 @@ def jarExtension=".jar"
 def admApp = "ADM"
 def cdmApp = "CDM"
 def global = "Global"
+def consul = new example()
 pipeline {
     agent any
 	parameters {
@@ -25,7 +26,7 @@ pipeline {
                script {
 			   echo "${params.Artifactory_Credential_ID}"
                 // downloadArtifact("${params.Artifactory_Credenteial_ID}")
-		       example1()
+		      consul.example1()
                }
             }			
 	    }
